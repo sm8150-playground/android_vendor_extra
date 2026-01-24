@@ -16,11 +16,6 @@ endif
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.sys.adb.shell=/system_ext/bin/bash
 
-# MiuiCamera
-ifneq (,$(filter cupid mondrian unicorn zeus,$(shell echo -n $(TARGET_PRODUCT) | sed -e 's/^[a-z]*_//g')))
-$(call inherit-product-if-exists, device/xiaomi/miuicamera-cupid/device.mk)
-endif
-
 # OTA
 ifeq ($(WITH_GMS),true)
 PRODUCT_PACKAGES += GmsUpdaterOverlay
@@ -36,8 +31,3 @@ ifeq ($(WITH_GMS),true)
 $(call inherit-product-if-exists, vendor/google/pixel-goodies/product.mk)
 endif
 
-# Translations
-ifeq (lineage_davinci,TARGET_PRODUCT)
-PRODUCT_PACKAGES += \
-    MotorTranslationsOverlay
-endif
